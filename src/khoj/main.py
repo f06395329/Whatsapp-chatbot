@@ -145,7 +145,7 @@ def run(should_start_server=True):
     fh.setLevel(logging.DEBUG)
     logger.addHandler(fh)
 
-    logger.info("🌘 Starting Khoj Server")
+    logger.info("🌘 Starting Khoj Server...")
 
     # Setup task scheduler
     poll_task_scheduler()
@@ -240,7 +240,7 @@ def start_server(app, host=None, port=None, socket=None):
             timeout_keep_alive=60,
             **state.ssl_config if state.ssl_config else {},
         )
-    logger.info("🌒 Stopping Khoj Server")
+    logger.info("🌒 Stopping Khoj Server...")
 
 
 def poll_task_scheduler():

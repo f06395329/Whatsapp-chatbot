@@ -147,6 +147,16 @@ def get_from_dict(dictionary, *args):
 
 
 def merge_dicts(priority_dict: dict, default_dict: dict):
+    """
+    Recursively merge two dictionaries with priority given to the first dictionary.
+    
+    Args:
+        priority_dict: Dictionary with higher priority values
+        default_dict: Dictionary with default values
+        
+    Returns:
+        dict: Merged dictionary with priority values taking precedence
+    """
     merged_dict = priority_dict.copy()
     for key, _ in default_dict.items():
         if key not in priority_dict:
