@@ -44,6 +44,8 @@
 
 [Khoj](https://khoj.dev) is a personal AI app to extend your capabilities. It smoothly scales up from an on-device personal AI to a cloud-scale enterprise AI.
 
+> **Note**: This project is actively maintained with regular improvements to logging, error handling, and code quality.
+
 - Chat with any local or online LLM (e.g llama3, qwen, gemma, mistral, gpt, claude, gemini, deepseek).
 - Get answers from the internet and your docs (including image, pdf, markdown, org-mode, word, notion files).
 - Access it from your Browser, Obsidian, Emacs, Desktop, Phone or Whatsapp.

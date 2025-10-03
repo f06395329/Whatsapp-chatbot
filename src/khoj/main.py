@@ -131,8 +131,8 @@ def run(should_start_server=True):
     elif args.verbose >= 1:
         logger.setLevel(logging.DEBUG)
 
-    logger.info(f"🚒 Initializing Khoj v{state.khoj_version}")
-    logger.info(f"📦 Initializing DB:\n{db_migrate_output.getvalue().strip()}")
+    logger.info(f"🚀 Initializing Khoj v{state.khoj_version}")
+    logger.info(f"📦 Initializing Database:\n{db_migrate_output.getvalue().strip()}")
     logger.debug(f"🌍 Initializing Web Client:\n{collectstatic_output.getvalue().strip()}")
 
     initialization(not args.non_interactive)
@@ -145,7 +145,7 @@ def run(should_start_server=True):
     fh.setLevel(logging.DEBUG)
     logger.addHandler(fh)
 
-    logger.info("🌘 Starting Khoj")
+    logger.info("🌘 Starting Khoj Server")
 
     # Setup task scheduler
     poll_task_scheduler()
@@ -216,7 +216,7 @@ def set_state(args):
 
 
 def start_server(app, host=None, port=None, socket=None):
-    logger.info("🌖 Khoj is ready to engage")
+    logger.info("🌖 Khoj is ready to engage! 🚀")
     if socket:
         uvicorn.run(
             app,

@@ -251,9 +251,15 @@ def clean_connections(func):
 
 
 def initialize_server():
+    """Initialize the Khoj server with AI models and search configurations."""
     if ConversationAdapters.has_valid_ai_model_api():
-        ai_model_api = ConversationAdapters.get_ai_model_api()
-        state.openai_client = openai.OpenAI(api_key=ai_model_api.api_key, base_url=ai_model_api.api_base_url)
+        try:
+            ai_model_api = ConversationAdapters.get_ai_model_api()
+            state.openai_client = openai.OpenAI(api_key=ai_model_api.api_key, base_url=ai_model_api.api_base_url)
+            logger.info("🤖 AI model API initialized successfully")
+        except Exception as e:
+            logger.error(f"Failed to initialize AI model API: {e}")
+            raise
 
     # Initialize Search Models from Config and initialize content
     try:

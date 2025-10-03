@@ -78,6 +78,15 @@ class AsyncIteratorWrapper:
 
 
 def is_none_or_empty(item):
+    """
+    Check if an item is None, empty, or an empty string.
+    
+    Args:
+        item: The item to check
+        
+    Returns:
+        bool: True if the item is None, empty, or an empty string
+    """
     return item is None or (hasattr(item, "__iter__") and len(item) == 0) or item == ""
 
 
@@ -86,7 +95,23 @@ def to_snake_case_from_dash(item: str):
 
 
 def get_absolute_path(filepath: Union[str, Path]) -> str:
-    return str(Path(filepath).expanduser().absolute())
+    """
+    Get the absolute path of a file or directory.
+    
+    Args:
+        filepath: The file or directory path to convert
+        
+    Returns:
+        str: The absolute path as a string
+        
+    Raises:
+        OSError: If the path cannot be resolved
+    """
+    try:
+        return str(Path(filepath).expanduser().absolute())
+    except OSError as e:
+        logger.error(f"Failed to get absolute path for {filepath}: {e}")
+        raise
 
 
 def resolve_absolute_path(filepath: Union[str, Optional[Path]], strict=False) -> Path:
@@ -94,8 +119,16 @@ def resolve_absolute_path(filepath: Union[str, Optional[Path]], strict=False) ->
 
 
 def get_from_dict(dictionary, *args):
-    """null-aware get from a nested dictionary
-    Returns: dictionary[args[0]][args[1]]... or None if any keys missing"""
+    """
+    Null-aware get from a nested dictionary.
+    
+    Args:
+        dictionary: The dictionary to search in
+        *args: Keys to traverse in the dictionary
+        
+    Returns:
+        The value at the nested key path, or None if any keys are missing
+    """
     current = dictionary
     for arg in args:
         if not hasattr(current, "__iter__") or arg not in current:
