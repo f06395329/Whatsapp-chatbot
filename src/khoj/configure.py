@@ -303,10 +303,19 @@ def initialize_server():
 
 
 def setup_default_agent():
+    """Initialize the default agent for the system."""
     AgentAdapters.create_default_agent()
 
 
 def initialize_content(user: KhojUser, regenerate: bool, search_type: Optional[SearchType] = None):
+    """
+    Initialize content index for a user.
+    
+    Args:
+        user: The KhojUser to initialize content for
+        regenerate: Whether to regenerate the content index
+        search_type: Optional search type to configure
+    """
     # Initialize Content from Config
     try:
         logger.info("📬 Updating content index...")

@@ -167,6 +167,15 @@ def merge_dicts(priority_dict: dict, default_dict: dict):
 
 
 def fix_json_dict(json_dict: dict) -> dict:
+    """
+    Recursively fix JSON dictionary by converting string booleans to actual booleans.
+    
+    Args:
+        json_dict: Dictionary with potential string boolean values
+        
+    Returns:
+        dict: Dictionary with corrected boolean values
+    """
     for k, v in json_dict.items():
         if v == "True" or v == "False":
             json_dict[k] = v == "True"
