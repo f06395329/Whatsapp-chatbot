@@ -185,7 +185,16 @@ def fix_json_dict(json_dict: dict) -> dict:
 
 
 def get_file_type(file_type: str, file_content: bytes) -> tuple[str, str]:
-    "Get file type from file mime type"
+    """
+    Get file type from file mime type and content analysis.
+    
+    Args:
+        file_type: MIME type of the file
+        file_content: Raw bytes content of the file
+        
+    Returns:
+        tuple: (file_type, encoding) where file_type is the detected type and encoding is the file encoding
+    """
 
     # Extract encoding from file_type
     encoding = file_type.split("=")[1].strip().lower() if ";" in file_type else None

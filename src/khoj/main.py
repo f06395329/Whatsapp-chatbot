@@ -204,6 +204,7 @@ def run(should_start_server=True):
 
 
 def set_state(args):
+    """Set application state from command line arguments."""
     state.log_file = args.log_file
     state.verbose = args.verbose
     state.host = args.host
@@ -244,6 +245,7 @@ def start_server(app, host=None, port=None, socket=None):
 
 
 def poll_task_scheduler():
+    """Poll and execute scheduled tasks every 60 seconds."""
     timer_thread = threading.Timer(60.0, poll_task_scheduler)
     timer_thread.daemon = True
     timer_thread.start()
