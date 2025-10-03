@@ -217,6 +217,7 @@ def set_state(args):
 
 
 def start_server(app, host=None, port=None, socket=None):
+    """Start the Khoj server with specified configuration."""
     logger.info("🌖 Khoj is ready to engage! 🚀")
     if socket:
         uvicorn.run(

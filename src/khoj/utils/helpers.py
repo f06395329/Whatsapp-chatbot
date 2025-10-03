@@ -230,7 +230,18 @@ def get_file_type(file_type: str, file_content: bytes) -> tuple[str, str]:
 def load_model(
     model_name: str, model_type, model_dir=None, device: str = None
 ) -> Union[BaseEncoder, SentenceTransformer, CrossEncoder]:
-    "Load model from disk or huggingface"
+    """
+    Load model from disk or Hugging Face Hub.
+    
+    Args:
+        model_name: Name of the model to load
+        model_type: Type of model to instantiate
+        model_dir: Optional directory to load model from
+        device: Device to load model on (cuda, cpu, etc.)
+        
+    Returns:
+        Loaded model instance
+    """
     # Construct model path
     logger = logging.getLogger(__name__)
     model_path = path.join(model_dir, model_name.replace("/", "_")) if model_dir is not None else None
@@ -252,7 +263,15 @@ def load_model(
 
 
 def get_class_by_name(name: str) -> object:
-    "Returns the class object from name string"
+    """
+    Get class object from fully qualified name string.
+    
+    Args:
+        name: Fully qualified class name (e.g., 'module.submodule.ClassName')
+        
+    Returns:
+        Class object from the specified module
+    """
     module_name, class_name = name.rsplit(".", 1)
     return getattr(import_module(module_name), class_name)
 
