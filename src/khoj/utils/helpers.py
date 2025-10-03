@@ -91,6 +91,15 @@ def is_none_or_empty(item):
 
 
 def to_snake_case_from_dash(item: str):
+    """
+    Convert snake_case string to dash-case.
+    
+    Args:
+        item: String in snake_case format
+        
+    Returns:
+        str: String converted to dash-case format
+    """
     return item.replace("_", "-")
 
 

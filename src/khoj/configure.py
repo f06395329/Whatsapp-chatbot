@@ -346,19 +346,19 @@ def configure_routes(app):
         from khoj.routers.auth import auth_router
 
         app.include_router(auth_router, prefix="/auth")
-        logger.info("🔑 Enabled Authentication")
+        logger.info("🔑 Authentication enabled")
 
     if state.billing_enabled:
         from khoj.routers.api_subscription import subscription_router
 
         app.include_router(subscription_router, prefix="/api/subscription")
-        logger.info("💳 Enabled Billing")
+        logger.info("💳 Billing enabled")
 
     if is_twilio_enabled():
         from khoj.routers.api_phone import api_phone
 
         app.include_router(api_phone, prefix="/api/phone")
-        logger.info("📞 Enabled Twilio")
+        logger.info("📞 Twilio integration enabled")
 
 
 def configure_middleware(app, ssl_enabled: bool = False):

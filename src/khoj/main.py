@@ -240,7 +240,7 @@ def start_server(app, host=None, port=None, socket=None):
             timeout_keep_alive=60,
             **state.ssl_config if state.ssl_config else {},
         )
-    logger.info("🌒 Stopping Khoj")
+    logger.info("🌒 Stopping Khoj Server")
 
 
 def poll_task_scheduler():
