@@ -104,6 +104,7 @@ SCHEDULE_LEADER_NAME = ProcessLock.Operation.SCHEDULE_LEADER
 
 
 def shutdown_scheduler():
+    """Shutdown the background scheduler and release process locks."""
     logger.info("🌑 Shutting down Khoj")
 
     if state.schedule_leader_process_lock:

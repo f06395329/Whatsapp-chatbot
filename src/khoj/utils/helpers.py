@@ -277,7 +277,15 @@ def get_class_by_name(name: str) -> object:
 
 
 class timer:
-    """Context manager to log time taken for a block of code to run"""
+    """
+    Context manager to log time taken for a block of code to run.
+    
+    Args:
+        message: Log message to display
+        logger: Logger instance to use
+        device: Optional torch device for logging
+        log_level: Logging level (DEBUG or INFO)
+    """
 
     def __init__(self, message: str, logger: logging.Logger, device: torch.device = None, log_level=logging.DEBUG):
         self.message = message
@@ -297,6 +305,12 @@ class timer:
 
 
 class LRU(OrderedDict):
+    """
+    Least Recently Used cache implementation using OrderedDict.
+    
+    Args:
+        capacity: Maximum number of items to store in cache
+    """
     def __init__(self, *args, capacity=128, **kwargs):
         self.capacity = capacity
         super().__init__(*args, **kwargs)
