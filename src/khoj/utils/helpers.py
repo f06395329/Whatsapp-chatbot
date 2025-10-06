@@ -328,9 +328,15 @@ class LRU(OrderedDict):
 
 
 def get_server_id():
-    """Get, Generate Persistent, Random ID per server install.
-    Helps count distinct khoj servers deployed.
-    Maintains anonymity by using non-PII random id."""
+    """
+    Get or generate a persistent, random ID per server installation.
+    
+    Helps count distinct Khoj servers deployed while maintaining anonymity
+    by using non-PII random ID.
+    
+    Returns:
+        str: Unique server identifier
+    """
     # Initialize server_id to None
     server_id = None
     # Expand path to the khoj env file. It contains persistent internal app data
@@ -377,7 +383,19 @@ def log_telemetry(
     disable_telemetry_env: bool = False,
     properties: dict = None,
 ):
-    """Log basic app usage telemetry like client, os, api called"""
+    """
+    Log basic app usage telemetry including client, OS, and API information.
+    
+    Args:
+        telemetry_type: Type of telemetry event
+        api: API endpoint called
+        client: Client application name
+        disable_telemetry_env: Whether telemetry is disabled
+        properties: Additional telemetry properties
+        
+    Returns:
+        dict: Telemetry data to be logged
+    """
     # Do not log usage telemetry, if telemetry is disabled via app config
     if disable_telemetry_env:
         return []

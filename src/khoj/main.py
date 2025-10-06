@@ -118,6 +118,12 @@ def shutdown_scheduler():
 
 
 def run(should_start_server=True):
+    """
+    Main entry point for the Khoj application.
+    
+    Args:
+        should_start_server: Whether to start the server (default: True)
+    """
     # Turn Tokenizers Parallelism Off. App does not support it.
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
