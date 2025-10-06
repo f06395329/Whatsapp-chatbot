@@ -423,7 +423,12 @@ def log_telemetry(
 
 
 def get_device_memory() -> int:
-    """Get device memory in GB"""
+    """
+    Get device memory in bytes.
+    
+    Returns:
+        int: Total memory available on the device in bytes
+    """
     device = get_device()
     if device.type == "cuda":
         return torch.cuda.get_device_properties(device).total_memory
@@ -434,7 +439,12 @@ def get_device_memory() -> int:
 
 
 def get_device() -> torch.device:
-    """Get device to run model on"""
+    """
+    Get the optimal device for running models.
+    
+    Returns:
+        torch.device: The best available device (CUDA, MPS, or CPU)
+    """
     if torch.cuda.is_available():
         # Use CUDA GPU
         return torch.device("cuda:0")
@@ -446,8 +456,12 @@ def get_device() -> torch.device:
 
 
 def is_e2b_code_sandbox_enabled():
-    """Check if E2B code sandbox is enabled.
-    Set E2B_API_KEY environment variable to use it."""
+    """
+    Check if E2B code sandbox is enabled.
+    
+    Returns:
+        bool: True if E2B_API_KEY environment variable is set
+    """
     return not is_none_or_empty(os.getenv("E2B_API_KEY"))
 
 
