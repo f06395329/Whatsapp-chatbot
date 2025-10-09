@@ -431,6 +431,7 @@ def update_content_index():
 @schedule.repeat(schedule.every(22).to(25).hours)
 @clean_connections
 def update_content_index_regularly():
+    """Schedule regular content index updates every 22-25 hours."""
     ProcessLockAdapters.run_with_lock(
         update_content_index, ProcessLock.Operation.INDEX_CONTENT, max_duration_in_seconds=60 * 60 * 2
     )
@@ -453,6 +454,7 @@ def configure_search_types():
 @schedule.repeat(schedule.every(2).minutes)
 @clean_connections
 def upload_telemetry():
+    """Upload telemetry data to the telemetry server every 2 minutes."""
     if state.telemetry_disabled or not state.telemetry:
         return
 
@@ -479,6 +481,7 @@ def upload_telemetry():
 @schedule.repeat(schedule.every(31).minutes)
 @clean_connections
 def delete_old_user_requests():
+    """Delete old rate limit requests every 31 minutes to maintain database hygiene."""
     num_user_ratelimit_requests = delete_user_requests()
     num_ratelimit_requests = delete_ratelimit_records()
     if state.verbose > 2:
@@ -488,6 +491,11 @@ def delete_old_user_requests():
 @schedule.repeat(schedule.every(17).minutes)
 @clean_connections
 def wakeup_scheduler():
+    """
+    Wake up the scheduler to ensure it runs scheduled tasks.
+    
+    Ensures the elected leader is aware of tasks scheduled on other workers.
+    """
     # Wake up the scheduler to ensure it runs the scheduled tasks. This is because the elected leader may not always be aware of tasks scheduled on other workers.
     TWELVE_HOURS = 43200
 
