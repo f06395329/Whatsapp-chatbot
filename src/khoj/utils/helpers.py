@@ -907,19 +907,35 @@ def is_promptrace_enabled():
 
 
 def is_operator_enabled():
-    """Check if Khoj can operate GUI applications.
-    Set KHOJ_OPERATOR_ENABLED env var to true and install playwright to enable it."""
+    """
+    Check if Khoj can operate GUI applications.
+    
+    Returns:
+        bool: True if KHOJ_OPERATOR_ENABLED environment variable is set to true
+    """
     return is_env_var_true("KHOJ_OPERATOR_ENABLED")
 
 
 def is_code_sandbox_enabled():
-    """Check if Khoj can run code in sandbox.
-    Set KHOJ_TERRARIUM_URL or E2B api key via env var to enable it."""
+    """
+    Check if Khoj can run code in a sandbox environment.
+    
+    Returns:
+        bool: True if KHOJ_TERRARIUM_URL or E2B API key is configured
+    """
     return not is_none_or_empty(os.getenv("KHOJ_TERRARIUM_URL")) or is_e2b_code_sandbox_enabled()
 
 
 def is_valid_url(url: str) -> bool:
-    """Check if a string is a valid URL"""
+    """
+    Check if a string is a valid URL.
+    
+    Args:
+        url: String to validate as URL
+        
+    Returns:
+        bool: True if the string is a valid URL with scheme and netloc
+    """
     try:
         result = urlparse(url.strip())
         return all([result.scheme, result.netloc])
@@ -928,6 +944,12 @@ def is_valid_url(url: str) -> bool:
 
 
 def is_internet_connected():
+    """
+    Check if the system has an active internet connection.
+    
+    Returns:
+        bool: True if internet connection is available
+    """
     try:
         response = requests.head("https://www.google.com")
         return response.status_code == 200
