@@ -420,6 +420,7 @@ def configure_middleware(app, ssl_enabled: bool = False):
 
 
 def update_content_index():
+    """Update content index for all users in the system."""
     for user in get_all_users():
         success = configure_content(user, {})
     if not success:
@@ -436,6 +437,12 @@ def update_content_index_regularly():
 
 
 def configure_search_types():
+    """
+    Configure and return available search types.
+    
+    Returns:
+        Enum: SearchType enum with all available search types
+    """
     # Extract core search types
     core_search_types = {e.name: e.value for e in SearchType}
 

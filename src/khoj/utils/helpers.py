@@ -925,14 +925,22 @@ def is_env_var_true(env_var: str, default: str = "false") -> bool:
 
 
 def in_debug_mode():
-    """Check if Khoj is running in debug mode.
-    Set KHOJ_DEBUG environment variable to true to enable debug mode."""
+    """
+    Check if Khoj is running in debug mode.
+    
+    Returns:
+        bool: True if KHOJ_DEBUG environment variable is set to true
+    """
     return is_env_var_true("KHOJ_DEBUG")
 
 
 def is_promptrace_enabled():
-    """Check if Khoj is running with prompt tracing enabled.
-    Set PROMPTRACE_DIR environment variable to prompt tracing path to enable it."""
+    """
+    Check if Khoj is running with prompt tracing enabled.
+    
+    Returns:
+        bool: True if PROMPTRACE_DIR environment variable is set
+    """
     return not is_none_or_empty(os.getenv("PROMPTRACE_DIR"))
 
 
