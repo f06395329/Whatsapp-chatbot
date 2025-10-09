@@ -842,6 +842,12 @@ class ImageIntentType(Enum):
 
 
 def generate_random_name():
+    """
+    Generate a random name by combining an adjective and a noun.
+    
+    Returns:
+        str: Random name in format "adjective noun" (e.g., "happy dog")
+    """
     # List of adjectives and nouns to choose from
     adjectives = [
         "happy",
@@ -868,6 +874,12 @@ def generate_random_name():
 
 
 def generate_random_internal_agent_name():
+    """
+    Generate a random internal agent name with underscore and number suffix.
+    
+    Returns:
+        str: Random agent name in format "adjective_noun####" (e.g., "happy_dog1234")
+    """
     random_name = generate_random_name()
 
     random_name = random_name.replace(" ", "_")
@@ -880,7 +892,16 @@ def generate_random_internal_agent_name():
 
 
 def batcher(iterable, max_n):
-    "Split an iterable into chunks of size max_n"
+    """
+    Split an iterable into chunks of specified size.
+    
+    Args:
+        iterable: The iterable to split into chunks
+        max_n: Maximum size of each chunk
+        
+    Yields:
+        Generator of non-None items in each chunk
+    """
     it = iter(iterable)
     while True:
         chunk = list(islice(it, max_n))
@@ -890,7 +911,16 @@ def batcher(iterable, max_n):
 
 
 def is_env_var_true(env_var: str, default: str = "false") -> bool:
-    """Get state of boolean environment variable"""
+    """
+    Get the boolean state of an environment variable.
+    
+    Args:
+        env_var: Name of the environment variable
+        default: Default value if variable is not set (default: "false")
+        
+    Returns:
+        bool: True if environment variable is set to "true" (case-insensitive)
+    """
     return os.getenv(env_var, default).lower() == "true"
 
 
